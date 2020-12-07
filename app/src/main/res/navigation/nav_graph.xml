@@ -3,13 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/postFragment">
+    app:startDestination="@id/navigation_home">
 
     <fragment
-        android:id="@+id/postFragment"
-        android:name="com.example.homework3.ui.fragments.postfragment.PostFragment"
+        android:id="@+id/navigation_users"
+        android:name="com.example.homework3.ui.fragments.user.UserFragment"
         android:label="fragment_post"
-        tools:layout="@layout/fragment_post" >
+        tools:layout="@layout/fragment_post">
+        <action
+            android:id="@+id/action_navigation_users_to_postFragment"
+            app:destination="@id/postFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.example.homework3.ui.fragments.add.AddFragment"
+        android:label="AddFragment" />
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.example.homework3.ui.fragments.edit.EditFragment"
+        android:label="fragment_edit"
+        tools:layout="@layout/fragment_edit" />
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.homework3.ui.fragments.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="com.example.homework3.ui.fragments.post.PostFragment"
+        android:label="fragment_post"
+        tools:layout="@layout/fragment_user">
         <action
             android:id="@+id/action_postFragment_to_addFragment"
             app:destination="@id/addFragment" />
@@ -17,13 +40,4 @@
             android:id="@+id/action_postFragment_to_editFragment"
             app:destination="@id/editFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/addFragment"
-        android:name="com.example.homework3.ui.fragments.addfragment.AddFragment"
-        android:label="AddFragment" />
-    <fragment
-        android:id="@+id/editFragment"
-        android:name="com.example.homework3.ui.fragments.editfragment.EditFragment"
-        android:label="fragment_edit"
-        tools:layout="@layout/fragment_edit" />
 </navigation>

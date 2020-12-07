@@ -1,4 +1,4 @@
-package com.example.homework3.ui.fragments.addfragment;
+package com.example.homework3.ui.fragments.add;
 
 import android.os.Bundle;
 
@@ -17,19 +17,15 @@ import android.widget.EditText;
 
 import com.example.homework3.R;
 import com.example.homework3.data.models.Post;
-import com.example.homework3.data.network.PostService;
-import com.example.homework3.ui.fragments.postfragment.PostAdapter;
-import com.example.homework3.ui.fragments.postfragment.PostFragment;
+import com.example.homework3.data.network.RetrofitService;
+import com.example.homework3.databinding.FragmentAddBinding;
+import com.example.homework3.ui.fragments.post.PostFragment;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class AddFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -41,27 +37,15 @@ public class AddFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private EditText addTitle;
-    private EditText addContent;
-    private EditText addUser;
-    private EditText addGroup;
-    private Button addPost;
     private Post post;
     private NavController navController;
+    private FragmentAddBinding binding;
     PostFragment postFragment;
 
     public AddFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static AddFragment newInstance(String param1, String param2) {
         AddFragment fragment = new AddFragment();
@@ -85,14 +69,15 @@ public class AddFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add, container, false);
+        binding = FragmentAddBinding.inflate(inflater, container, false);
+        View v = binding.getRoot();
+        return v;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(view);
-        addPost.setOnClickListener(new View.OnClickListener() {
+        binding.btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addNewPost();
@@ -105,11 +90,11 @@ public class AddFragment extends Fragment {
 
     private void addNewPost() {
         post = new Post();
-        post.setTitle(addTitle.getText().toString());
-        post.setContent(addContent.getText().toString());
-        post.setGroup(Integer.valueOf(addGroup.getText().toString()));
-        post.setUser(Integer.valueOf(addUser.getText().toString()));
-        PostService.getInstance().newPost(post).enqueue(new Callback<Post>() {
+        post.setTitle(binding.addTitle.getText().toString());
+        post.setContent(binding.addContent.getText().toString());
+        post.setGroup(Integer.valueOf(binding.addGroup.getText().toString()));
+        post.setUser(Integer.valueOf(binding.addGroup.getText().toString()));
+        RetrofitService.getInstance().newPost(post).enqueue(new Callback<Post>() {
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
                 if (response.isSuccessful())
@@ -123,11 +108,4 @@ public class AddFragment extends Fragment {
         });
     }
 
-    private void init(View view) {
-        addTitle = view.findViewById(R.id.add_title);
-        addContent = view.findViewById(R.id.add_content);
-        addUser = view.findViewById(R.id.add_user);
-        addGroup = view.findViewById(R.id.add_group);
-        addPost = view.findViewById(R.id.btn_add);
-    }
 }

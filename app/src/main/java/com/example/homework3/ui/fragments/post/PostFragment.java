@@ -1,4 +1,4 @@
-package com.example.homework3.ui.fragments.postfragment;
+package com.example.homework3.ui.fragments.post;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -19,7 +19,8 @@ import android.view.ViewGroup;
 
 import com.example.homework3.R;
 import com.example.homework3.data.models.Post;
-import com.example.homework3.data.network.PostService;
+import com.example.homework3.data.network.RetrofitService;
+import com.example.homework3.databinding.FragmentPostBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -29,24 +30,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PostFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class PostFragment extends Fragment implements PostAdapter.OnClicks {
 
 
-    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM1 = "userNum";
     private static final String ARG_PARAM2 = "param2";
 
-    private String mParam1;
+    private Integer mParam1;
     private String mParam2;
 
-    private RecyclerView postRecyclerview;
     private PostAdapter adapter;
-    private FloatingActionButton addFab;
     private NavController navController;
+    private FragmentPostBinding binding;
 
     public PostFragment() {
         // Required empty public constructor
@@ -65,8 +60,7 @@ public class PostFragment extends Fragment implements PostAdapter.OnClicks {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = getArguments().getInt(ARG_PARAM1);
         }
     }
 
@@ -74,7 +68,9 @@ public class PostFragment extends Fragment implements PostAdapter.OnClicks {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_post, container, false);
+        binding = FragmentPostBinding.inflate(inflater, container, false);
+        View v = binding.getRoot();
+        return v;
     }
 
     @Override
@@ -85,15 +81,13 @@ public class PostFragment extends Fragment implements PostAdapter.OnClicks {
 
     private void initViews(View view) {
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host);
-        addFab = view.findViewById(R.id.add_fab);
-        postRecyclerview = view.findViewById(R.id.posts_recycler);
         LinearLayoutManager lnm = new LinearLayoutManager(getContext());
-        postRecyclerview.setLayoutManager(lnm);
+        binding.postsRecycler.setLayoutManager(lnm);
         List<Post> list = setPostList();
         adapter = new PostAdapter(list,this);
-        postRecyclerview.setAdapter(adapter);
+        binding.postsRecycler.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        addFab.setOnClickListener(new View.OnClickListener() {
+        binding.addFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openAddFragment();
@@ -107,7 +101,7 @@ public class PostFragment extends Fragment implements PostAdapter.OnClicks {
 
     private List<Post> setPostList() {
         List<Post> postList = new ArrayList<>();
-        PostService.getInstance().getAllPosts().enqueue(new Callback<List<Post>>() {
+        RetrofitService.getInstance().getUsersPosts(mParam1).enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
                 if (response.isSuccessful() && response.body() != null)
@@ -117,6 +111,7 @@ public class PostFragment extends Fragment implements PostAdapter.OnClicks {
 
             @Override
             public void onFailure(Call<List<Post>> call, Throwable t) {
+
             }
         });
         return postList;
@@ -142,7 +137,7 @@ public class PostFragment extends Fragment implements PostAdapter.OnClicks {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
                                         int which) {
-                        PostService.getInstance().deletePost(adapter.getItem(pos).getId()).enqueue(new Callback<Post>() {
+                        RetrofitService.getInstance().deletePost(adapter.getItem(pos).getId()).enqueue(new Callback<Post>() {
                             @Override
                             public void onResponse(Call<Post> call, Response<Post> response) {
                                 if (response.isSuccessful())

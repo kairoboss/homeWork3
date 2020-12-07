@@ -1,4 +1,4 @@
-package com.example.homework3.ui.fragments.postfragment;
+package com.example.homework3.ui.fragments.post;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,7 +69,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         }
 
         public void bind(Post post) {
-            postTitle.setText(post.getTitle());
+            postTitle.setText("post: "+post.getTitle());
         }
     }
 

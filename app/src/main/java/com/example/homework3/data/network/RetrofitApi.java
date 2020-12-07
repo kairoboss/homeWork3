@@ -3,6 +3,7 @@ package com.example.homework3.data.network;
 import android.service.autofill.AutofillService;
 
 import com.example.homework3.data.models.Post;
+import com.example.homework3.data.models.WeatherModel;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface PostApi {
+public interface RetrofitApi {
 
     @GET("posts/{postId}")
     Call<Post> getPost(
@@ -41,5 +42,14 @@ public interface PostApi {
             @Field("content") String content,
             @Field("user") Integer user,
             @Field("group") Integer group
+    );
+
+    @GET("posts")
+    Call<List<Post>> getUsersPosts(@Query("user") Integer userId);
+
+    @GET("weather")
+    Call<WeatherModel> getCurrentWeather(
+            @Query("q") String cityName,
+            @Query("appid") String apiKey
     );
 }
