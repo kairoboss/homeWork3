@@ -16,6 +16,7 @@ import com.example.homework3.data.network.WeatherService;
 import com.example.homework3.databinding.FragmentHomeBinding;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -26,14 +27,13 @@ import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
 
-    
+
     private FragmentHomeBinding binding;
     private WeatherModel weatherModel;
 
     public HomeFragment() {
         // Required empty public constructor
     }
-
 
 
     @Override
@@ -65,22 +65,21 @@ public class HomeFragment extends Fragment {
                     Log.e("TAG", "yaai");
                     binding.cityTv.setText("city: " + weatherModel.getName() + " " + weatherModel.getSys().getCountry());
                     binding.cloudlinessProcent.setText(weatherModel.getClouds().getAll() + "%");
-                    binding.windNumber.setText(weatherModel.getWind().getDeg() + " " + weatherModel.getWind().getSpeed() + "m/s");
-                    binding.humidityProcent.setText(weatherModel.getMain().getHumidity() + "%");
+                    binding.windNumber.setText(weatherModel.getWind().getDeg() + " " + weatherModel.getWind().getSpeed().toString() + "m/s");
+                    binding.humidityPercent.setText(weatherModel.getMain().getHumidity() + "%");
                     binding.pressureNumber.setText(weatherModel.getMain().getPressure() + "mp");
                     Date dateRise = new Date(weatherModel.getSys().getSunrise());
-                    DateFormat dfRise = new SimpleDateFormat("HH:mm");
-                    binding.sunriseNumber.setText(dfRise.format(dateRise));
+                    SimpleDateFormat df = new SimpleDateFormat("HH:mm");
+                    binding.sunriseNumber.setText(df.format(dateRise));
                     Date dateSet = new Date(weatherModel.getSys().getSunset());
-                    DateFormat dfSet = new SimpleDateFormat("HH:mm");
-                    binding.sunriseNumber.setText(dfSet.format(dateSet));
+                    binding.sunriseNumber.setText(df.format(dateSet));
                     binding.tempMinMaxValues.setText("min: " + weatherModel.getMain().getTempMin() + " " + "max: " + weatherModel.getMain().getTempMax());
                 }
             }
 
             @Override
             public void onFailure(Call<WeatherModel> call, Throwable t) {
-                Log.e("tag",  t.getLocalizedMessage());
+                Log.e("tag", t.getLocalizedMessage());
             }
         });
         Date currentTime = new Date(System.currentTimeMillis());

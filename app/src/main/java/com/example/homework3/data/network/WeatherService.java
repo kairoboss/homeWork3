@@ -6,11 +6,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class WeatherService {
     private static RetrofitApi retrofitApi;
 
-    private WeatherService(){
+    private WeatherService() {
     }
 
-    public static RetrofitApi getInstance(){
-        if (retrofitApi == null){
+    public static RetrofitApi getInstance() {
+        if (retrofitApi == null) {
             retrofitApi = buildRetrofit();
         }
         return retrofitApi;

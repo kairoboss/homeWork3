@@ -14,7 +14,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/main_constaint_height">
+        android:layout_height="100dp">
 
 
 
@@ -57,7 +57,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/small_size">
+        android:layout_height="50dp">
 
         <ImageView
             android:id="@+id/location_image"
@@ -74,7 +74,7 @@
             android:id="@+id/city_tv"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/number_size"
+            android:textSize="20sp"
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:text="Bishkek"
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:text="@string/now"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/txt_size"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -115,7 +115,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/constrain_margin_top">
+        android:layout_marginTop="20dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
@@ -135,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/wind"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/txt_size"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -146,7 +146,7 @@
                     android:layout_height="wrap_content"
                     android:text="123"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/number_size"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -172,7 +172,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/pressure"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/txt_size"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -183,7 +183,7 @@
                     android:layout_height="wrap_content"
                     android:text="123"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/number_size"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -230,9 +230,9 @@
                 android:id="@+id/cloudliness_procent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/_100"
+                android:text="123"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/number_size"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -259,18 +259,18 @@
                     android:layout_height="wrap_content"
                     android:text="@string/humidity"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/txt_size"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
                 <TextView
-                    android:id="@+id/humidity_procent"
+                    android:id="@+id/humidity_percent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/_81"
+                    android:text="123"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/number_size"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -306,7 +306,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/sunrise"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/txt_size"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -315,9 +315,9 @@
                     android:id="@+id/sunrise_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/_06_00"
+                    android:text="123"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/number_size"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -345,7 +345,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/sunset"
-                android:textSize="@dimen/txt_size"
+                android:textSize="20sp"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -356,9 +356,9 @@
                 android:id="@+id/sunset_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/_20_31"
+                android:text="18:01"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/number_size"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -392,7 +392,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/temp_min_max"
-                    android:textSize="@dimen/txt_size"
+                    android:textSize="20sp"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -405,7 +405,7 @@
                     android:layout_height="wrap_content"
                     android:text="123"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/number_size"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
